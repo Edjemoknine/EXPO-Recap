@@ -1,0 +1,59 @@
+[
+  {
+    "id": 1,
+    "title": "Smartphone X",
+    "price": 799.99,
+    "description": "Latest smartphone with advanced features",
+    "category": "electronics",
+    "brand": "TechCo",
+    "stock": 50,
+    "image": "https://fakeapi.net/images/smartphone.jpg",
+    "specs": {
+      "color": "black",
+      "weight": "180g",
+      "storage": "128GB"
+    },
+    "rating": {
+      "rate": 4.5,
+      "count": 120
+    }
+  },
+  {
+    "id": 3,
+    "title": "Wireless Earbuds",
+    "price": 149.99,
+    "description": "High-quality wireless earbuds with noise cancellation",
+    "category": "electronics",
+    "brand": "AudioTech",
+    "stock": 75,
+    "image": "https://fakeapi.net/images/earbuds.jpg",
+    "specs": {
+      "color": "white",
+      "battery": "24h",
+      "waterproof": true
+    },
+    "rating": {
+      "rate": 4.7,
+      "count": 200
+    }
+  },
+  {
+    "id": 8,
+    "title": "Smart Watch",
+    "price": 199.99,
+    "description": "Smartwatch with fitness tracking features",
+    "category": "electronics",
+    "brand": "TechTime",
+    "stock": 80,
+    "image": "https://fakeapi.net/images/smartwatch.jpg",
+    "specs": {
+      "color": "black",
+      "battery": "48h",
+      "waterproof": true
+    },
+    "rating": {
+      "rate": 4.4,
+      "count": 180
+    }
+  }
+]
