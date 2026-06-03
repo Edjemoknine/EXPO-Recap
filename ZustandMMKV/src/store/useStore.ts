@@ -1,6 +1,6 @@
-import { createMMKV } from "react-native-mmkv";
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
+import { mmkvStorage } from "./storage";
 
 interface CartItem {
   id: number;
@@ -14,17 +14,6 @@ interface CartStore {
   removeFromCart: (itemId: any) => void;
   clearCart: () => void;
 }
-
-const storage = new createMMKV({ id: "cart-storage" });
-
-const mmkvStorage = {
-  getItem: (name: string) => {
-    const value = storage.getString(name);
-    return value === undefined ? null : value;
-  },
-  setItem: (name: string, value: string) => storage.set(name, value),
-  removeItem: (name: string) => storage.delete(name),
-};
 
 const useCartStore = create<CartStore>()(
   persist(
