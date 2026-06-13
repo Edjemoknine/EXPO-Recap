@@ -1,0 +1,45 @@
+{
+  "expo": {
+    "name": "fullTips",
+    "slug": "fullTips",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/logo.png",
+    "scheme": "fulltips",
+    "userInterfaceStyle": "automatic",
+    "ios": {
+      "icon": "./assets/expo.icon"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#E6F4FE",
+        "foregroundImage": "./assets/images/logo.png",
+        "backgroundImage": "./assets/images/logo.png",
+        "monochromeImage": "./assets/images/logo.png"
+      },
+      "predictiveBackGestureEnabled": false,
+      "package": "com.moknine.fullTips"
+    },
+    "web": {
+      "output": "static",
+      "favicon": "./assets/images/logo.png"
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-splash-screen",
+        {
+          "backgroundColor": "#208AEF",
+          "android": {
+            "image": "./assets/images/logo.png",
+            "imageWidth": 76
+          }
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true,
+      "reactCompiler": true
+    }
+  }
+}
