@@ -6,6 +6,7 @@ type ContextType = {
   hasOnboarded: boolean;
   loading: boolean;
   completeOnboarding: () => void;
+  logoutOnboarding: () => void;
 };
 
 const Context = createContext<ContextType>({} as ContextType);
@@ -31,12 +32,18 @@ export function OnboardingProvider({
     setHasOnboarded(true);
   };
 
+  const logoutOnboarding = () => {
+    storage.remove(StorageKeys.HAS_ONBOARDED);
+    setHasOnboarded(false);
+  };
+
   return (
     <Context.Provider
       value={{
         hasOnboarded,
         loading,
         completeOnboarding,
+        logoutOnboarding,
       }}
     >
       {children}

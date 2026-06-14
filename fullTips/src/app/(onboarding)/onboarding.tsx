@@ -1,15 +1,23 @@
+import { useAuth } from "@/providers/auth-provider";
 import { useOnboarding } from "@/providers/onboarding-provider";
 import { router } from "expo-router";
 import { Image, View } from "react-native";
 import Onboarding from "react-native-onboarding-swiper";
 
 const onboarding = () => {
-  const { completeOnboarding } = useOnboarding();
+  const { completeOnboarding, hasOnboarded } = useOnboarding();
+  const { userToken } = useAuth();
 
   const finish = () => {
+    console.log("click");
+
     completeOnboarding();
 
-    router.replace("/login");
+    if (hasOnboarded && !!userToken) {
+      router.replace("/");
+    } else {
+      router.replace("/login");
+    }
   };
 
   return (
@@ -23,7 +31,7 @@ const onboarding = () => {
             image: (
               <Image
                 style={{ width: 300, height: 300 }}
-                source={require("../../assets/images/people/4807.jpg")}
+                source={require("../../../assets/images/people/4807.jpg")}
               />
             ),
             title: "Onboarding",
@@ -34,7 +42,7 @@ const onboarding = () => {
             image: (
               <Image
                 style={{ width: 300, height: 300 }}
-                source={require("../../assets/images/learn.png")}
+                source={require("../../../assets/images/learn.png")}
               />
             ),
             title: "Hit the ground running",
@@ -45,7 +53,7 @@ const onboarding = () => {
             image: (
               <Image
                 style={{ width: 300, height: 300 }}
-                source={require("../../assets/images/done.png")}
+                source={require("../../../assets/images/done.png")}
               />
             ),
             title: "Accomplish your goals",
