@@ -25,6 +25,7 @@ export default function Home() {
 
       <Button title="Logout" onPress={logoutAll} />
       <Link href="/profile">Profile</Link>
+      <Link href="/gustures">Gustures</Link>
       {/* <Button title="Remove Onboarding" onPress={logoutOnboarding} /> */}
     </View>
   );
