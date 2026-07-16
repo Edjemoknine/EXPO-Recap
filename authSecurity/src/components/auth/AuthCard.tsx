@@ -10,6 +10,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import { GoogleSignInButton } from "./GoogleOneTap";
 import InputField from "./InputField";
 import SocialAuthButtons from "./SocialAuthButtons";
 
@@ -106,7 +107,7 @@ const AuthCard = ({ isLogin = true }: Props) => {
             {isLogin ? "Sign In to continue" : "Sign Up to continue"}
           </Text>
         </View>
-
+        <GoogleSignInButton />
         {/* Social Auth Buttons */}
         <SocialAuthButtons />
 
