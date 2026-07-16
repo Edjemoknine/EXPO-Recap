@@ -42,12 +42,12 @@ const styles = StyleSheet.create({
   titleText: {
     fontSize: 32,
     fontWeight: "700",
-    color: "#1A1A1A",
+    color: "#ffffff",
     marginBottom: 4,
   },
   taglineText: {
     fontSize: 13,
-    color: "#999",
+    color: "#f1f1f1",
     letterSpacing: 0.5,
   },
 });

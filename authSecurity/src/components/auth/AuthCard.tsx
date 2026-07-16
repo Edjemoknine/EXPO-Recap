@@ -1,6 +1,9 @@
+import { useSignIn, useSignUp } from "@clerk/expo";
 import { MaterialIcons } from "@expo/vector-icons";
+import { Href, Link, router } from "expo-router";
 import { useState } from "react";
 import {
+  Alert,
   ScrollView,
   StyleSheet,
   Text,
@@ -20,14 +23,72 @@ const AuthCard = ({ isLogin = true }: Props) => {
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
 
-  const handleSubmit = () => {
-    // Handle login/signup logic
-    console.log({
-      fullName,
-      email,
-      password,
-      rememberMe,
-    });
+  // ---Clerk Hooks---
+  const { signIn } = useSignIn();
+  const { signUp } = useSignUp();
+
+  const handleSubmit = async () => {
+    try {
+      if (isLogin) {
+        const { error } = await signIn.password({
+          emailAddress: email,
+          password,
+        });
+        if (error) {
+          Alert.alert("Error", JSON.stringify(error, null, 2));
+          return;
+        }
+        if (signIn.status === "complete") {
+          await signIn.finalize({
+            navigate: ({ session, decorateUrl }) => {
+              // Handle session tasks
+              // See https://clerk.com/docs/guides/development/custom-flows/authentication/session-tasks
+              if (session?.currentTask) {
+                Alert.alert(
+                  "Error",
+                  JSON.stringify(session?.currentTask, null, 2) || "",
+                );
+                return;
+              }
+
+              // If no session tasks, navigate the signed-in user to the home page
+              const url = decorateUrl("/");
+              if (url.startsWith("http")) {
+                window.location.href = url;
+              } else {
+                router.push(url as Href);
+              }
+            },
+          });
+        } else if (signIn.status === "needs_second_factor") {
+        } else if (signIn.status === "needs_client_trust") {
+          const emailCodeFactor = signIn.supportedSecondFactors.find(
+            (factor) => factor.strategy === "email_code",
+          );
+
+          if (emailCodeFactor) {
+            await signIn.mfa.sendEmailCode();
+          }
+        } else {
+          // Check why the sign-in is not complete
+          console.error("Sign-in attempt not complete:", signIn);
+        }
+      } else {
+        const { error } = await signUp.password({
+          emailAddress: email,
+          password: password,
+        });
+        if (error) {
+          Alert.alert("Error", JSON.stringify(error, null, 2));
+          return;
+        }
+
+        if (!error) await signUp.verifications.sendEmailCode();
+        router.push("/(auth)/verifey-email");
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -100,7 +161,12 @@ const AuthCard = ({ isLogin = true }: Props) => {
               <Text style={styles.rememberText}>Remember me</Text>
             </TouchableOpacity>
             <TouchableOpacity>
-              <Text style={styles.forgotPassword}>Forgot Password?</Text>
+              <Link
+                href={"/(auth)/reset_password"}
+                style={styles.forgotPassword}
+              >
+                Forgot Password?
+              </Link>
             </TouchableOpacity>
           </View>
         )}
@@ -122,9 +188,12 @@ const AuthCard = ({ isLogin = true }: Props) => {
             {isLogin ? "Don't have account? " : "Already have account? "}
           </Text>
           <TouchableOpacity>
-            <Text style={styles.linkButton}>
+            <Link
+              href={isLogin ? "/(auth)/register" : "/(auth)/login"}
+              style={styles.linkButton}
+            >
               {isLogin ? "Sign Up" : "Sign In"}
-            </Text>
+            </Link>
           </TouchableOpacity>
         </View>
       </View>
@@ -136,15 +205,15 @@ export default AuthCard;
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     flexGrow: 1,
-    justifyContent: "center",
-    paddingHorizontal: 20,
-    paddingVertical: 20,
+    justifyContent: "flex-end",
   },
   card: {
     backgroundColor: "#FFF",
     borderRadius: 20,
     padding: 24,
+    paddingBottom: 40,
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.1,
