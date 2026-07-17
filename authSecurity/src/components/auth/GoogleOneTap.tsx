@@ -30,17 +30,20 @@ export function GoogleSignInButton({
     try {
       const { createdSessionId, setActive, ...props } =
         await startGoogleAuthenticationFlow();
-      console.log({ createdSessionId, setActive, ...props });
+      console.log(
+        "Google sign-in result:",
+        JSON.stringify({ createdSessionId, setActive, ...props }, null, 2),
+      );
 
       if (createdSessionId && setActive) {
         await setActive({ session: createdSessionId });
         console.log("set the session!");
 
-        if (onSignInComplete) {
-          onSignInComplete();
-        } else {
-          router.replace("/");
-        }
+        // if (onSignInComplete) {
+        //   onSignInComplete();
+        // } else {
+        router.replace("/");
+        // }
       }
     } catch (err: any) {
       if (err.code === "SIGN_IN_CANCELLED" || err.code === "-5") {
