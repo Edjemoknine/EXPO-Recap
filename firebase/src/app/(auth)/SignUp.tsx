@@ -5,6 +5,7 @@ import {
   ActivityIndicator,
   Alert,
   Button,
+  KeyboardAvoidingView,
   StyleSheet,
   Text,
   TextInput,
@@ -47,7 +48,7 @@ export default function RegisterScreen() {
   };
 
   return (
-    <View style={styles.container}>
+    <KeyboardAvoidingView behavior="padding" style={styles.container}>
       <Text style={styles.title}>Create Account</Text>
 
       <TextInput
@@ -90,7 +91,7 @@ export default function RegisterScreen() {
           </Link>
         </Text>
       </View>
-    </View>
+    </KeyboardAvoidingView>
   );
 }
 

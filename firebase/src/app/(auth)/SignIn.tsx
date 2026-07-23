@@ -5,6 +5,8 @@ import {
   ActivityIndicator,
   Alert,
   Button,
+  KeyboardAvoidingView,
+  Platform,
   StyleSheet,
   Text,
   TextInput,
@@ -38,7 +40,11 @@ export default function LoginScreen() {
   };
 
   return (
-    <View style={styles.container}>
+    <KeyboardAvoidingView
+      behavior="padding"
+      keyboardVerticalOffset={Platform.OS === "ios" ? 100 : 0}
+      style={styles.container}
+    >
       <Text style={styles.title}>Login</Text>
 
       <TextInput
@@ -73,7 +79,7 @@ export default function LoginScreen() {
           .
         </Text>
       </View>
-    </View>
+    </KeyboardAvoidingView>
   );
 }
 
