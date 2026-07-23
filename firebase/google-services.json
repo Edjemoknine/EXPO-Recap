@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "640339513760",
+    "project_id": "expofire-6ce36",
+    "storage_bucket": "expofire-6ce36.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:640339513760:android:43ac57688261eb34c914c5",
+        "android_client_info": {
+          "package_name": "com.moknine.firebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "640339513760-b9hodgvj0r604g9do17n4dsfnufoc84n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.moknine.firebase",
+            "certificate_hash": "93d04b5dd4e80948e14305415168b9afb7512c49"
+          }
+        },
+        {
+          "client_id": "640339513760-9jtk2noos8ar0maodnvscld57egovhmn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDvzcCWxsXsYH6ebpoHh3z1iYg_MO87Jjs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "640339513760-9jtk2noos8ar0maodnvscld57egovhmn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -107,7 +107,7 @@ const AuthCard = ({ isLogin = true }: Props) => {
             {isLogin ? "Sign In to continue" : "Sign Up to continue"}
           </Text>
         </View>
-        <GoogleSignInButton />
+        {/* <GoogleSignInButton /> */}
         {/* Social Auth Buttons */}
         <SocialAuthButtons />
 
