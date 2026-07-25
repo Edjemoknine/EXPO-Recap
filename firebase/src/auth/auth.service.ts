@@ -1,5 +1,6 @@
 // import auth from "@/firebase/auth";
 
+import { userService } from "@/features/chat/services/user.service";
 import auth from "../../firebase/auth";
 
 export const authService = {
@@ -14,6 +15,8 @@ export const authService = {
       email,
       password,
     );
+
+    await userService.createProfile();
 
     return response.user;
   },
